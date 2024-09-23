@@ -1,3 +1,6 @@
+body {
+	background-color: #eeeeee;
+}
 .board {
 	display: flex;
 	width: 100%;
@@ -28,10 +31,10 @@
 	border: 0.5rem outset;
 	height: 80%;
 }
-.list.rosterA img {
+.list.rosterA img, .pairing .teamA img {
 	border-color: #aa2222;
 }
-.list.rosterB img {
+.list.rosterB img, .pairing .teamB img {
 	border-color: #2222aa;
 }
 .list.rosterA.second img {
