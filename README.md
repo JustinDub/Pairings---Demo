@@ -1,6 +1,6 @@
 # Pairings - Demo
 ## Installation
-Télécharger l'application (Zip)
+Télécharger l'application (Code > Download Zip)
 
 ## Lancement
 Double-cliquez sur le fichier board.html, l'application devrait se lancer dans votre navigateur
