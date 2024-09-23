@@ -1,0 +1,98 @@
+.board {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	height: 95vh;
+}
+.roster, .pairing {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-flow: column;
+	height: 100%;
+	min-width: 300px;
+	width: 20%;
+}
+.list, .paired {
+	height: 15%;
+}
+
+#rosterA {
+	border-right: dashed;
+}
+#rosterB {
+	border-left: dashed;
+}
+.list img {
+	margin: 5px;
+	border: 0.5rem outset;
+	height: 80%;
+}
+.list.rosterA img {
+	border-color: #aa2222;
+}
+.list.rosterB img {
+	border-color: #2222aa;
+}
+.list.rosterA.second img {
+	filter: invert(1);
+	border-color: #55dddd;
+}
+.list.rosterB.second img {
+	filter: invert(1);
+	border-color: #dddd55;
+}
+.list.rosterA.selected img, .list.selected.rosterB img{
+	border-color: #22aa22;
+}
+.list.rosterA.second.selected img, .list.second.selected.rosterB img{
+	border-color: #dd55dd;
+}
+div.list.listPaired img {
+	filter: invert(0.4);
+}
+div.second.list.listPaired img {
+	filter: invert(0.6);
+}
+
+.paired {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.attackers {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+.pairing img {
+	margin: 5px;
+	border: 0.5rem outset;
+	height: 80%;
+	background-position: center;
+    background-repeat:no-repeat;
+    background-size: contain;
+    width: 12vh;
+}
+.pairing .attacker {
+	background-image: url("images/attacker.png");
+    background-size: cover;
+	width: 30%;
+}
+.pairing .attacker.denied {
+	filter: invert(0.4);
+}
+.defender {
+	background-image: url("images/defender.png");
+}
+.refused {
+	background-image: url("images/refused.png");
+}
+.forgotten {
+	background-image: url("images/forgotten.png");
+}
+
+.footer {
+	display: flex;
+	justify-content: space-around;
+}

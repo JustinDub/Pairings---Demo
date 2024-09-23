@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="board">
+		<div id="rosterA" class="roster">
+			<div id="listA1" class="list rosterA"><img src="images/rock.png" alt="Rock"/></div>
+			<div id="listA2" class="list rosterA"><img src="images/paper.png" alt="Paper"/></div>
+			<div id="listA3" class="list rosterA second"><img src="images/paper.png" alt="Paper"/></div>
+			<div id="listA4" class="list rosterA"><img src="images/scissors.png" alt="Scissors"/></div>
+			<div id="listA5" class="list rosterA second"><img src="images/scissors.png" alt="Scissors"/></div>
+			<div id="listA6" class="list rosterA"><img src="images/well.png" alt="Well"/></div>
+		</div>
+		<div id="pairingA" class="pairing">
+			<div class="paired teamA">
+				<img id="pairedA1" class="defender">
+			</div>
+			<div class="attackers paired teamA">
+				<img id="pairedA2" class="attacker">
+				<img id="pairedA2b" class="attacker">
+			</div>
+			<div class="paired teamA">
+				<img id="pairedA3" class="defender">
+			</div>
+			<div class="attackers paired teamA">
+				<img id="pairedA4" class="attacker">
+				<img id="pairedA4b" class="attacker">
+			</div>
+			<div class="paired teamA">
+				<img id="pairedA5" class="refused">
+			</div>
+			<div class="paired teamA">
+				<img id="pairedA6" class="forgotten">
+			</div>
+		</div>
+		<div id="pairingB" class="pairing">
+			<div class="attackers paired teamB">
+				<img id="pairedB1" class="attacker">
+				<img id="pairedB1b" class="attacker">
+			</div>
+			<div class="paired teamB">
+				<img id="pairedB2" class="defender">
+			</div>
+			<div class="attackers paired teamB">
+				<img id="pairedB3" class="attacker">
+				<img id="pairedB3b" class="attacker">
+			</div>
+			<div class="paired teamB">
+				<img id="pairedB4" class="defender">
+			</div>
+			<div class="paired teamB">
+				<img id="pairedB5" class="refused">
+			</div>
+			<div class="paired teamB">
+				<img id="pairedB6" class="forgotten">
+			</div>
+		</div>
+		<div id="rosterB" class="roster">
+			<div id="listB1" class="list rosterB"><img src="images/well.png" alt="Well"/></div>
+			<div id="listB2" class="list rosterB"><img src="images/scissors.png" alt="Scissors"/></div>
+			<div id="listB3" class="list rosterB second"><img src="images/scissors.png" alt="Scissors"/></div>
+			<div id="listB4" class="list rosterB"><img src="images/paper.png" alt="Paper"/></div>
+			<div id="listB5" class="list rosterB second"><img src="images/paper.png" alt="Paper"/></div>
+			<div id="listB6" class="list rosterB"><img src="images/rock.png" alt="Rock"/></div>
+		</div>
+	</div>
+	<div class="footer">
+		<button id="eraser">Gomme</button>
+		<button id="clearAll">Réinitialiser</button>
+	</div>
+</body>
+<script src="script.js"></script>
