@@ -20,7 +20,7 @@ body {
 	height: 15%;
 }
 
-//Lists
+/*Lists*/
 #rosterA {
 	border-right: dashed;
 }
@@ -59,7 +59,7 @@ div.second.list.listPaired img {
 	filter: invert(0.6);
 }
 
-//Pairings
+/*Pairings*/
 .paired {
 	width: 100%;
 	display: flex;
