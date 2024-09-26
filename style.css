@@ -1,5 +1,5 @@
 body {
-	background-color: #eeeeee;
+	background-color: #dddddd;
 }
 .board {
 	display: flex;
@@ -95,6 +95,54 @@ div.second.list.listPaired img {
 }
 .forgotten {
 	background-image: url("images/assets/forgotten.png");
+}
+
+/*Modal*/
+.modal-wrapper {
+	background-color: #aaaaaa;
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+	height: 100%;
+	flex-flow: column wrap;
+}
+.modal {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	height: 95vh;
+	flex-flow: wrap column;
+}
+.factionsRoster {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-flow: wrap;
+	height: 100%;
+	width: 60%;
+}
+.faction {
+	display: flex;
+	width: 15%;
+	height: 15%;
+	display: flex;
+	align-items: center;
+	flex-flow: column;
+}
+.faction img {
+	margin: 5px;
+	border: 0.5rem outset;
+	height: 80%;
+}
+.faction.selected img{
+	border-color: #22aa22;
+}
+#validateRoster {
+	align-self: center;I
 }
 
 .footer {
