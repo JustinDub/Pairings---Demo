@@ -20,6 +20,7 @@ body {
 	height: 15%;
 }
 
+//Lists
 #rosterA {
 	border-right: dashed;
 }
@@ -58,6 +59,7 @@ div.second.list.listPaired img {
 	filter: invert(0.6);
 }
 
+//Pairings
 .paired {
 	width: 100%;
 	display: flex;
@@ -78,7 +80,7 @@ div.second.list.listPaired img {
     width: 12vh;
 }
 .pairing .attacker {
-	background-image: url("images/attacker.png");
+	background-image: url("images/assets/attacker.png");
     background-size: cover;
 	width: 30%;
 }
@@ -86,13 +88,13 @@ div.second.list.listPaired img {
 	filter: invert(0.4);
 }
 .defender {
-	background-image: url("images/defender.png");
+	background-image: url("images/assets/defender.png");
 }
 .refused {
-	background-image: url("images/refused.png");
+	background-image: url("images/assets/refused.png");
 }
 .forgotten {
-	background-image: url("images/forgotten.png");
+	background-image: url("images/assets/forgotten.png");
 }
 
 .footer {

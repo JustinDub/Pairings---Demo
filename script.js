@@ -27,14 +27,14 @@ rosterB.addEventListener("click", (e) => selectList(e));
 
 function selectList(element) {
 	if(element.target.tagName=="IMG") {
-		if(element.target.parentElement.classList.contains("listPaired")) return
+		if(element.target.parentElement.classList.contains("listPaired")) return;
 		if (selectedListId) unselectList();
 		element.target.parentElement.classList.add("selected");
 		selectedListId = element.target.parentElement.id;
 		selectedListSrc = element.target.src;
 	}
 	else if(element.target.tagName=="DIV" && element.target.className.includes("list")) {
-		if(element.target.classList.contains("listPaired")) return
+		if(element.target.classList.contains("listPaired")) return;
 		if (selectedListId) unselectList();
 		element.target.classList.add("selected");
 		selectedListId = element.target.id;
@@ -85,7 +85,7 @@ function attributePairing(element) {
 			//remove list from pairing
 			else {
 				const className = element.target.className
-				element.target.style=`background-image: url(images/${className}.png)`;
+				element.target.style=`background-image: url(images/assets/${className}.png)`;
 				pairedLists[`${element.target.id}`] = "";
 			}
 		}
@@ -102,7 +102,7 @@ function clearAll() {
 	const pairedList = document.querySelectorAll(".paired img");
 	pairedList.forEach((pairedElement) => {
 		const className = pairedElement.className;
-		pairedElement.style=`background-image: url(images/${className}.png)`;
+		pairedElement.style=`background-image: url(images/assets/${className}.png)`;
 	})
 
 	const lists = document.querySelectorAll(".list");
