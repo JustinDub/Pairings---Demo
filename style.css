@@ -1,5 +1,5 @@
 body {
-	background-color: #eeeeee;
+	background-color: #dddddd;
 }
 .board {
 	display: flex;
@@ -20,6 +20,7 @@ body {
 	height: 15%;
 }
 
+/*Lists*/
 #rosterA {
 	border-right: dashed;
 }
@@ -58,6 +59,7 @@ div.second.list.listPaired img {
 	filter: invert(0.6);
 }
 
+/*Pairings*/
 .paired {
 	width: 100%;
 	display: flex;
@@ -78,7 +80,7 @@ div.second.list.listPaired img {
     width: 12vh;
 }
 .pairing .attacker {
-	background-image: url("images/attacker.png");
+	background-image: url("images/assets/attacker.png");
     background-size: cover;
 	width: 30%;
 }
@@ -86,13 +88,61 @@ div.second.list.listPaired img {
 	filter: invert(0.4);
 }
 .defender {
-	background-image: url("images/defender.png");
+	background-image: url("images/assets/defender.png");
 }
 .refused {
-	background-image: url("images/refused.png");
+	background-image: url("images/assets/refused.png");
 }
 .forgotten {
-	background-image: url("images/forgotten.png");
+	background-image: url("images/assets/forgotten.png");
+}
+
+/*Modal*/
+.modal-wrapper {
+	background-color: #aaaaaa;
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+	height: 100%;
+	flex-flow: column wrap;
+}
+.modal {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	height: 95vh;
+	flex-flow: wrap column;
+}
+.factionsRoster {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-flow: wrap;
+	height: 100%;
+	width: 60%;
+}
+.faction {
+	display: flex;
+	width: 15%;
+	height: 15%;
+	display: flex;
+	align-items: center;
+	flex-flow: column;
+}
+.faction img {
+	margin: 5px;
+	border: 0.5rem outset;
+	height: 80%;
+}
+.faction.selected img{
+	border-color: #22aa22;
+}
+#validateRoster {
+	align-self: center;I
 }
 
 .footer {
