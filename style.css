@@ -76,7 +76,7 @@ div.second.list.listPaired img {
 	height: 80%;
 	background-position: center;
     background-repeat:no-repeat;
-    background-size: cover;
+    background-size: contain;
     width: 12vh;
 }
 .pairing .attacker {
