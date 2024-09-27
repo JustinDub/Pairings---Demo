@@ -76,13 +76,12 @@ div.second.list.listPaired img {
 	height: 80%;
 	background-position: center;
     background-repeat:no-repeat;
-    background-size: contain;
+    background-size: cover;
     width: 12vh;
 }
 .pairing .attacker {
 	background-image: url("images/assets/attacker.png");
-    background-size: cover;
-	width: 30%;
+	width: 35%;
 }
 .pairing .attacker.denied {
 	filter: invert(0.4);

@@ -3,6 +3,7 @@ const rosterB = document.querySelector("#rosterB");
 
 let selectedListId = "";
 let selectedListSrc = undefined;
+let selectedListRoster = "";
 const pairedLists = {
 	"pairedA1" : "",
 	"pairedA2" : "",
@@ -33,6 +34,7 @@ function selectList(element) {
 		element.target.parentElement.classList.add("selected");
 		selectedListId = element.target.parentElement.id;
 		selectedListSrc = element.target.src;
+		element.target.parentElement.classList.forEach((listClass) => {if(listClass.includes("roster")) selectedListRoster = listClass})
 	}
 	else if(element.target.tagName=="DIV" && element.target.className.includes("list")) {
 		if(element.target.classList.contains("listPaired")) return;
@@ -63,7 +65,8 @@ function attributePairing(element) {
 	if(element.target.tagName=="IMG") {
 		if(
 			element.target.classList.contains("attacker") 
-			&& (!selectedListId || selectedListId == pairedLists[`${element.target.id}`])
+			&& pairedLists[`${element.target.id}`]
+			&& !selectedListId
 			&& !element.target.classList.contains("denied")
 		) {
 			element.target.classList.add("denied")
@@ -72,21 +75,23 @@ function attributePairing(element) {
 		}
 		else if (selectedListId != pairedLists[`${element.target.id}`]) {
 			element.target.classList.remove("denied")
-			//remove previous list from pairing
 			if(pairedLists[`${element.target.id}`]){
+			//remove previous list from pairing
 				const selectedList = document.querySelector(`#${pairedLists[`${element.target.id}`]}`);
 				selectedList.classList.remove("listPaired");
 			}
-			//add list to pairing
 			if (selectedListId) {
-				element.target.style=`background-image: url(${selectedListSrc})`
-				const selectedList = document.querySelector(`#${selectedListId}`);
-				selectedList.classList.add("listPaired");
-				pairedLists[`${element.target.id}`] = selectedListId;
-				unselectList();
+			//add list to pairing
+				if(element.target.parentElement.classList.contains(selectedListRoster)) {
+					element.target.style=`background-image: url(${selectedListSrc})`
+					const selectedList = document.querySelector(`#${selectedListId}`);
+					selectedList.classList.add("listPaired");
+					pairedLists[`${element.target.id}`] = selectedListId;
+					unselectList();
+				}
 			}
-			//remove list from pairing
 			else {
+			//remove list from pairing
 				const className = element.target.className
 				element.target.style=`background-image: url(images/assets/${className}.png)`;
 				pairedLists[`${element.target.id}`] = "";
@@ -135,8 +140,10 @@ function displayModal() {
 
 	function validateRoster(event) {
 		//ferme la modal de modification des rosters
-		const prevFaction = document.querySelector(`.faction [title=${selectedFaction.name}]`)
-		prevFaction.parentElement.classList.remove("selected")
+		if(selectedFaction.name) {
+			const prevFaction = document.querySelector(`.faction [title=${selectedFaction.name}]`)
+			prevFaction.parentElement.classList.remove("selected")
+		}
 		modalWrapper.style.display = "none"
         document.removeEventListener("click", validateRoster);
         document.removeEventListener("click", selectFaction);
@@ -161,4 +168,7 @@ function clearAll() {
 
 	// reset pairedLists
 	Object.keys(pairedLists).forEach((key, index) => pairedLists[key]="");
+
+	const attackers = document.querySelectorAll(".attacker");
+	attackers.forEach((attacker) => attacker.classList.remove("denied"))
 }
