@@ -100,9 +100,6 @@ function attributePairing(element) {
 	}
 }
 
-const eraserButton = document.querySelector("#eraser");
-eraserButton.addEventListener("click", (e) => unselectList());
-
 const modalButton = document.querySelector("#modal");
 modalButton.addEventListener("click", (e) => displayModal());
 const modalWrapper = document.querySelector(".modal-wrapper")
@@ -131,7 +128,7 @@ function displayModal() {
 					rosterElement.target.src = factionElement.target.src
 					const listElement = board.querySelector(`.roster #${rosterElement.target.parentElement.id} img`)
 					listElement.src = factionElement.target.src
-				}
+				}	
 			});
 		}
 	}
@@ -139,17 +136,41 @@ function displayModal() {
 	factionsRoster.addEventListener("click", selectFaction)
 
 	function validateRoster(event) {
-		//ferme la modal de modification des rosters
+		//Ferme la modal de modification des rosters
 		if(selectedFaction.name) {
 			const prevFaction = document.querySelector(`.faction [title=${selectedFaction.name}]`)
 			prevFaction.parentElement.classList.remove("selected")
 		}
+		//Modifie nom des Rosters
+		const inputRosterA = document.querySelector(".modal .rosterA input").value
+		const inputRosterB = document.querySelector(".modal .rosterB input").value
+		board.querySelector(`#rosterA .title`).textContent = inputRosterA
+		board.querySelector(`#rosterB .title`).textContent = inputRosterB
+
 		modalWrapper.style.display = "none"
         document.removeEventListener("click", validateRoster);
         document.removeEventListener("click", selectFaction);
 	}
 	const validateButton = document.querySelector("#validateRoster");
 	validateButton.addEventListener("click", validateRoster);
+}
+
+
+const infosButton = document.querySelector("#infos");
+infosButton.addEventListener("click", (e) => handleInfosDisplay());
+let infosDisplay = true;
+
+function handleInfosDisplay() {
+	if(infosDisplay) {
+		document.querySelector(".infos").style.display = 'none';
+		infosButton.textContent = "Afficher Infos";
+		infosDisplay = false;
+	}
+	else {
+		document.querySelector(".infos").style.display = 'flex'
+		infosButton.textContent = "Masquer Infos";
+		infosDisplay = true
+	}
 }
 
 const clearButton = document.querySelector("#clearAll");
