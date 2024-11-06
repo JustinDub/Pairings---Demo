@@ -193,3 +193,27 @@ function clearAll() {
 	const attackers = document.querySelectorAll(".attacker");
 	attackers.forEach((attacker) => attacker.classList.remove("denied"))
 }
+
+//Handle Infos EstimateFile Change
+const estimInput = document.querySelector("#estimInput")
+estimInput.addEventListener("change", (e) => updateEstimImg());
+
+function updateEstimImg() {
+	estimFile = estimInput.files[0]
+	const fileTypes = [
+	  "image/apng",
+	  "image/bmp",
+	  "image/gif",
+	  "image/jpeg",
+	  "image/pjpeg",
+	  "image/png",
+	  "image/svg+xml",
+	  "image/tiff",
+	  "image/webp",
+	  "image/x-icon",
+	];
+	if(estimFile && fileTypes.includes(estimFile.type)) {
+		const estimImg = document.querySelector("#estimImg")
+		estimImg.src = URL.createObjectURL(estimFile)
+	}
+}
