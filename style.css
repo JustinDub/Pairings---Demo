@@ -16,6 +16,9 @@ body {
 	min-width: 200px;
 	width: 20%;
 }
+.roster {
+	width: 10%;
+}
 .list, .paired {
 	height: 15%;
 }
@@ -30,6 +33,7 @@ body {
 .title {
 	font-size: 2em;
 	font-weight: bold;
+	text-align: center;
 	width: 100%;
 }
 .list img {
@@ -110,7 +114,7 @@ div.second.list.listPaired img {
 	flex-flow: column wrap;
 	align-items: center;
 	justify-content: center;
-	width: 20%;
+	width: 40%;
 }
 .infos img {
 	width: 100%;
