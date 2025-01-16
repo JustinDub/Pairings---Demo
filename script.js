@@ -2,8 +2,10 @@ const rosterA = document.querySelector("#rosterA");
 const rosterB = document.querySelector("#rosterB");
 
 let selectedListId = "";
+let selectedListTitle = "";
 let selectedListSrc = undefined;
 let selectedListRoster = "";
+
 const pairedLists = {
 	"pairedA1" : "",
 	"pairedA2" : "",
@@ -23,16 +25,26 @@ const pairedLists = {
 	"pairedB6" : ""
 }
 
+const swapMatrice = [
+	{id: "#listA1", swapId: "#listB1"},
+	{id: "#listA2", swapId: "#listB2"},
+	{id: "#listA3", swapId: "#listB3"},
+	{id: "#listA4", swapId: "#listB4"},
+	{id: "#listA5", swapId: "#listB5"},
+	{id: "#listA6", swapId: "#listB6"}
+]
+
 rosterA.addEventListener("click", (e) => selectList(e));
 rosterB.addEventListener("click", (e) => selectList(e));
 
 function selectList(element) {
-	//Sélectionne une case d'un des rosters d'équipe
+	//Select roster element
 	if(element.target.tagName=="IMG") {
 		if(element.target.parentElement.classList.contains("listPaired")) return;
 		if (selectedListId) unselectList();
 		element.target.parentElement.classList.add("selected");
 		selectedListId = element.target.parentElement.id;
+		selectedListTitle = element.target.title;
 		selectedListSrc = element.target.src;
 		element.target.parentElement.classList.forEach((listClass) => {if(listClass.includes("roster")) selectedListRoster = listClass})
 	}
@@ -41,16 +53,18 @@ function selectList(element) {
 		if (selectedListId) unselectList();
 		element.target.classList.add("selected");
 		selectedListId = element.target.id;
+		selectedListTitle = element.target.firstElementChild.title;
 		selectedListSrc = element.target.firstElementChild.src;
 	}
 }
 
 function unselectList() {
-	//Désélectionne une case d'un des rosters d'équipe
+	//Unselect roster element
 	if(!selectedListId) return;
 	const selectedList = document.querySelector(`#${selectedListId}`);
 	selectedList.classList.remove("selected");
 	selectedListId = "";
+	selectedListTitle = "";
 	selectedListSrc = undefined;
 }
 
@@ -61,7 +75,7 @@ pairingA.addEventListener("click", (e) => attributePairing(e));
 pairingB.addEventListener("click", (e) => attributePairing(e));
 
 function attributePairing(element) {
-	//Modifie l'état d'une case du tableau de pairings
+	//Change pairing element content
 	if(element.target.tagName=="IMG") {
 		if(
 			element.target.classList.contains("attacker") 
@@ -76,12 +90,12 @@ function attributePairing(element) {
 		else if (selectedListId != pairedLists[`${element.target.id}`]) {
 			element.target.classList.remove("denied")
 			if(pairedLists[`${element.target.id}`]){
-			//remove previous list from pairing
+			//Remove previous list from pairing
 				const selectedList = document.querySelector(`#${pairedLists[`${element.target.id}`]}`);
 				selectedList.classList.remove("listPaired");
 			}
 			if (selectedListId) {
-			//add list to pairing
+			//Add list to pairing
 				if(element.target.parentElement.classList.contains(selectedListRoster)) {
 					element.target.style=`background-image: url(${selectedListSrc})`
 					const selectedList = document.querySelector(`#${selectedListId}`);
@@ -91,7 +105,7 @@ function attributePairing(element) {
 				}
 			}
 			else {
-			//remove list from pairing
+			//Remove list from pairing
 				const className = element.target.className
 				element.target.style=`background-image: url(images/assets/${className}.png)`;
 				pairedLists[`${element.target.id}`] = "";
@@ -155,6 +169,25 @@ function displayModal() {
 	validateButton.addEventListener("click", validateRoster);
 }
 
+const swapButton = document.querySelector("#swap");
+swapButton.addEventListener("click", (e) => swapRosters());
+
+function swapRosters() {
+	swapMatrice.forEach((elementA) => {
+		//element.target.src for pairings, element.target.firstElementChild.src for list
+		const previousA = document.querySelector(elementA.id)
+		const previousB = document.querySelector(elementA.swapId)
+		let src, title;
+		if (previousA.firstElementChild != null){
+			src = previousA.firstElementChild.src;
+			title = previousA.firstElementChild.title;
+			previousA.firstElementChild.src = previousB.firstElementChild.src;
+			previousA.firstElementChild.title = previousB.firstElementChild.title;
+			previousB.firstElementChild.src = src;
+			previousB.firstElementChild.title = title;
+		}
+	})
+}
 
 const infosButton = document.querySelector("#infos");
 infosButton.addEventListener("click", (e) => handleInfosDisplay());
