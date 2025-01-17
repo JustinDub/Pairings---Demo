@@ -23,8 +23,9 @@ const pairedLists = {
 	"pairedB4" : "",
 	"pairedB5" : "",
 	"pairedB6" : ""
-}
+};
 
+let swapped = false;
 const swapMatrice = [
 	{id: "#listA1", swapId: "#listB1"},
 	{id: "#listA2", swapId: "#listB2"},
@@ -32,7 +33,7 @@ const swapMatrice = [
 	{id: "#listA4", swapId: "#listB4"},
 	{id: "#listA5", swapId: "#listB5"},
 	{id: "#listA6", swapId: "#listB6"}
-]
+];
 
 rosterA.addEventListener("click", (e) => selectList(e));
 rosterB.addEventListener("click", (e) => selectList(e));
@@ -173,8 +174,13 @@ const swapButton = document.querySelector("#swap");
 swapButton.addEventListener("click", (e) => swapRosters());
 
 function swapRosters() {
+	const titleA = document.querySelector("#rosterA .title");
+	const titleB = document.querySelector("#rosterB .title");
+	const prevTitleA = titleA.textContent;
+	titleA.textContent = titleB.textContent;
+	titleB.textContent = prevTitleA;
+
 	swapMatrice.forEach((elementA) => {
-		//element.target.src for pairings, element.target.firstElementChild.src for list
 		const previousA = document.querySelector(elementA.id)
 		const previousB = document.querySelector(elementA.swapId)
 		let src, title;
