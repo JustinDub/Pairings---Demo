@@ -41,10 +41,10 @@ body {
 	border: 0.5rem outset;
 	height: 80%;
 }
-.list.rosterA img, .pairing .teamA img {
+.list.rosterA img, .pairing .rosterA img {
 	border-color: #aa2222;
 }
-.list.rosterB img, .pairing .teamB img {
+.list.rosterB img, .pairing .rosterB img {
 	border-color: #2222aa;
 }
 .list.rosterA.second img {
