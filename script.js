@@ -141,8 +141,12 @@ function displayModal() {
 				if(rosterElement.target.tagName=="IMG" && rosterElement.target.parentElement.classList.contains("list")) {
 					//Met à jour la liste sélectionnée dans le roster
 					rosterElement.target.src = factionElement.target.src
+					rosterElement.target.title = factionElement.target.title
 					const listElement = board.querySelector(`.roster #${rosterElement.target.parentElement.id} img`)
 					listElement.src = factionElement.target.src
+					listElement.title = factionElement.target.title
+					const listElementTitle = board.querySelector(`.roster #${rosterElement.target.parentElement.id} p`)
+					listElementTitle.textContent = factionElement.target.title
 				}	
 			});
 		}
@@ -153,8 +157,8 @@ function displayModal() {
 	function validateRoster(event) {
 		//Ferme la modal de modification des rosters
 		if(selectedFaction.name) {
-			const prevFaction = document.querySelector(`.faction [title=${selectedFaction.name}]`)
-			prevFaction.parentElement.classList.remove("selected")
+			const prevFaction = document.querySelector(`.faction.selected`)
+			prevFaction.classList.remove("selected")
 		}
 		//Modifie nom des Rosters
 		const inputRosterA = document.querySelector(".modal .rosterA input").value
@@ -189,8 +193,10 @@ function swapRosters() {
 			title = previousA.firstElementChild.title;
 			previousA.firstElementChild.src = previousB.firstElementChild.src;
 			previousA.firstElementChild.title = previousB.firstElementChild.title;
+			previousA.lastElementChild.textContent = previousB.firstElementChild.title;
 			previousB.firstElementChild.src = src;
 			previousB.firstElementChild.title = title;
+			previousB.lastElementChild.textContent = title;
 		}
 	})
 }
