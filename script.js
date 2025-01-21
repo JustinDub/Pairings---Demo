@@ -130,7 +130,7 @@ function displayModal() {
 		//Sélectionne une faction pour l'attribuer à un roster
 		if(factionElement.target.tagName=="IMG") {
 			if(selectedFaction.name) {
-				const prevFaction = document.querySelector(`.faction [title=${selectedFaction.name}]`)
+				const prevFaction = document.querySelector(`.faction [title='${selectedFaction.name}']`)
 				prevFaction.parentElement.classList.remove("selected")
 			}
 			factionElement.target.parentElement.classList.add("selected")
