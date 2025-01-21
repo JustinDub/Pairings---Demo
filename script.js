@@ -156,12 +156,6 @@ function displayRosterModal() {
 
 	function validateRoster(event) {
 		//Ferme la modal de modification des rosters
-		// if(selectedFaction.name) {
-		// 	const prevFaction = document.querySelector(`.faction.selected`)
-		// 	prevFaction.classList.remove("selected")
-		// 	selectedFaction.name = ""
-		// 	selectedFaction.src = ""
-		// }
 		//Modifie nom des Rosters
 		const inputRosterA = document.querySelector("#rosterModal .rosterA input").value
 		const inputRosterB = document.querySelector("#rosterModal .rosterB input").value
@@ -250,6 +244,7 @@ function clearAll() {
 }
 	
 function openClearConfirmModal() {
+	//document.queryAll("button").disabled=true
 	confirmModalWrapper.style.display = "flex";
 	const cancelConfirmButton = document.querySelector("#cancelConfirm");
 	cancelConfirmButton.addEventListener("click", closeClearConfirmModal);
