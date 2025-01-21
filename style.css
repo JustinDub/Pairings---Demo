@@ -136,7 +136,7 @@ div.second.list.listPaired img {
 	bottom: 0;
 	z-index: 2;
 	height: 100%;
-	flex-flow: column wrap;
+	flex-flow: wrap column;
 }
 .modal {
 	display: flex;
@@ -144,6 +144,12 @@ div.second.list.listPaired img {
 	justify-content: space-between;
 	height: 95vh;
 	flex-flow: wrap column;
+}
+#confirmModalWrapper {
+	top: 40%;
+	left: 40%;
+	right: 40%;
+	bottom: 40%;
 }
 .factionsRoster {
 	display: flex;
