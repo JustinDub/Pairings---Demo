@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang=en>
 <head>
-<link rel="stylesheet" href="style.css">
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<div class="board">
@@ -75,19 +76,19 @@
 		</div>
 	</div>
 	<div class="footer">
-		<button id="modal">Gérer Rosters</button>
+		<button id="displayRosterModal">Gérer Rosters</button>
 		<button id="swap">Inverser Rosters</button>
 		<button id="infos">Masquer Infos</button>
 		<button id="clearAll">Réinitialiser</button>
 	</div>
-	<div class="modal-wrapper">
-		<div class="modal">
-			<div id="rosterA-Modal" class="roster">
+	<div id="rosterModalWrapper" class="modal-wrapper">
+		<div id="rosterModal" class="modal">
+			<div id="rosterA-modal" class="roster">
 				<div class="title rosterA"><input type="text"></input></div>
 				<div id="listA1" class="list rosterA"><img src="images/factions/DarkAngels.png" alt="DarkAngels" title="DarkAngels"/></div>
 				<div id="listA2" class="list rosterA"><img src="images/factions/Drukhari.png" alt="Drukhari" title="Drukhari"/></div>
-				<div id="listA3" class="list rosterA"><img src="images/factions/ImperialGuard.png" alt="ImperialGuard" title="ImperialGuard"/></div>
-				<div id="listA4" class="list rosterA"><img src="images/factions/ImperialKnights.png" alt="ImperialKnights" title="ImperialKnights"/></div>
+				<div id="listA3" class="list rosterA"><img src="images/factions/ImperialGuard.png" alt="ImperialGuard" title="Imperial Guard"/></div>
+				<div id="listA4" class="list rosterA"><img src="images/factions/ImperialKnights.png" alt="ImperialKnights" title="Imperial Knights"/></div>
 				<div id="listA5" class="list rosterA"><img src="images/factions/Necrons.png" alt="Necrons" title="Necrons"/></div>
 				<div id="listA6" class="list rosterA"><img src="images/factions/TauEmpire.png" alt="TauEmpire" title="TauEmpire"/></div>
 			</div>
@@ -119,17 +120,28 @@
 				<div class="faction"><img src="images/factions/WorldEaters.png" alt="WorldEaters" title="World Eaters"/><div>World Eaters</div></div>
 				<div class="faction"><img src="images/factions/Votann.png" alt="Votann" title="Votann"/><div>Votann</div></div>
 			</div>
-			<div id="rosterB-Modal" class="roster">
+			<div id="rosterB-modal" class="roster">
 				<div class="title rosterB"><input type="text"></input></div>
-				<div id="listB1" class="list rosterB"><img src="images/factions/ChaosSpaceMarines.png" alt="ChaosSpaceMarines" title="ChaosSpaceMarines"/></div>
-				<div id="listB2" class="list rosterB"><img src="images/factions/DarkAngels.png" alt="DarkAngels" title="DarkAngels"/></div>
-				<div id="listB3" class="list rosterB"><img src="images/factions/GreyKnights.png" alt="GreyKnights" title="GreyKnights"/></div>
+				<div id="listB1" class="list rosterB"><img src="images/factions/ChaosSpaceMarines.png" alt="ChaosSpaceMarines" title="Chaos Space Marines"/></div>
+				<div id="listB2" class="list rosterB"><img src="images/factions/DarkAngels.png" alt="DarkAngels" title="Dark Angels"/></div>
+				<div id="listB3" class="list rosterB"><img src="images/factions/GreyKnights.png" alt="GreyKnights" title="Grey Knights"/></div>
 				<div id="listB4" class="list rosterB"><img src="images/factions/Sororitas.png" alt="Sororitas" title="Sororitas"/></div>
-				<div id="listB5" class="list rosterB"><img src="images/factions/ThousandSons.png" alt="ThousandSons" title="ThousandSons"/></div>
+				<div id="listB5" class="list rosterB"><img src="images/factions/ThousandSons.png" alt="ThousandSons" title="Thousand Sons"/></div>
 				<div id="listB6" class="list rosterB"><img src="images/factions/Votann.png" alt="Votann" title="Votann"/></div>
 			</div>
 		</div>
 		<button id="validateRoster">Valider</button>
+	</div>
+	<div id="confirmModalWrapper" class="modal-wrapper">
+		<div id="confirmModal" class="modal">
+			<p>Réinitialiser le pairing ?</p>
+		</div>
+		<div>
+			<button id="validateConfirm">Oui</button>
+			<button id="cancelConfirm">Non</button>
+		</div>
+	</div>
+		
 	</div>
 </body>
 <script src="script.js"></script>
