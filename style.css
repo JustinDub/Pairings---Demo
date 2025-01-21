@@ -145,11 +145,26 @@ div.second.list.listPaired img {
 	height: 95vh;
 	flex-flow: wrap column;
 }
-#confirmModalWrapper {
+#confirmModalWrapper {    
 	top: 40%;
-	left: 40%;
-	right: 40%;
-	bottom: 40%;
+    left: 40%;
+    right: 40%;
+    /* bottom: 40%; */
+    height: 20%;
+    /* flex-flow: column; */
+    justify-content: space-around;
+    align-items: center;
+    border: solid;
+    border-color: #aaaaaa;
+    border-radius: 8px;
+    borderradius:8px;
+}
+#confirmModal {
+    height: auto;
+}
+#confirmModal p {
+    font-size: larger;
+    margin-left: 5px;
 }
 .factionsRoster {
 	display: flex;
