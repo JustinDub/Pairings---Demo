@@ -115,15 +115,15 @@ function attributePairing(element) {
 	}
 }
 
-const modalButton = document.querySelector("#modal");
-modalButton.addEventListener("click", (e) => displayModal());
-const modalWrapper = document.querySelector(".modal-wrapper")
+const rosterModalButton = document.querySelector("#displayRosterModal");
+rosterModalButton.addEventListener("click", (e) => displayRosterModal());
+const rosterModalWrapper = document.querySelector("#rosterModalWrapper")
 
-function displayModal() {
+function displayRosterModal() {
 	//Affiche la modal de modification des rosters
 	const board = document.querySelector(".board")
 
-	modalWrapper.style.display = "flex"
+	rosterModalWrapper.style.display = "flex"
 	let selectedFaction = {name: "", src: ""}
 
 	function selectFaction(factionElement) {
@@ -136,8 +136,8 @@ function displayModal() {
 			factionElement.target.parentElement.classList.add("selected")
 			selectedFaction.name = factionElement.target.title
 			selectedFaction.src = factionElement.target.src
-			const modal = document.querySelector(".modal")
-			modal.addEventListener("click", (rosterElement) => {
+			const rosterModal = document.querySelector("#rosterModal")
+			rosterModal.addEventListener("click", (rosterElement) => {
 				if(rosterElement.target.tagName=="IMG" && rosterElement.target.parentElement.classList.contains("list")) {
 					//Met à jour la liste sélectionnée dans le roster
 					rosterElement.target.src = factionElement.target.src
@@ -156,17 +156,13 @@ function displayModal() {
 
 	function validateRoster(event) {
 		//Ferme la modal de modification des rosters
-		if(selectedFaction.name) {
-			const prevFaction = document.querySelector(`.faction.selected`)
-			prevFaction.classList.remove("selected")
-		}
 		//Modifie nom des Rosters
-		const inputRosterA = document.querySelector(".modal .rosterA input").value
-		const inputRosterB = document.querySelector(".modal .rosterB input").value
+		const inputRosterA = document.querySelector("#rosterModal .rosterA input").value
+		const inputRosterB = document.querySelector("#rosterModal .rosterB input").value
 		board.querySelector(`#rosterA .title`).textContent = inputRosterA
 		board.querySelector(`#rosterB .title`).textContent = inputRosterB
 
-		modalWrapper.style.display = "none"
+		rosterModalWrapper.style.display = "none"
         document.removeEventListener("click", validateRoster);
         document.removeEventListener("click", selectFaction);
 	}
@@ -219,9 +215,18 @@ function handleInfosDisplay() {
 }
 
 const clearButton = document.querySelector("#clearAll");
-clearButton.addEventListener("click", (e) => clearAll());
+clearButton.addEventListener("click", (e) => openClearConfirmModal());
+const confirmModalWrapper = document.querySelector("#confirmModalWrapper");
+
+function closeClearConfirmModal() {
+	confirmModalWrapper.style.display = "none"
+    document.removeEventListener("click", clearAll);
+    document.removeEventListener("click", closeClearConfirmModal);
+	document.querySelectorAll("button").forEach(element => element.disabled=false);
+}
 
 function clearAll() {
+	closeClearConfirmModal();
 	//Réinitialise la page
 	const pairedList = document.querySelectorAll(".paired img");
 	pairedList.forEach((pairedElement) => {
@@ -237,6 +242,17 @@ function clearAll() {
 
 	const attackers = document.querySelectorAll(".attacker");
 	attackers.forEach((attacker) => attacker.classList.remove("denied"))
+}
+	
+function openClearConfirmModal() {
+	document.querySelectorAll("button").forEach(element => element.disabled=true);
+	confirmModalWrapper.style.display = "flex";
+	const cancelConfirmButton = document.querySelector("#cancelConfirm");
+	cancelConfirmButton.disabled = false;
+	cancelConfirmButton.addEventListener("click", closeClearConfirmModal);
+	const validateConfirmButton = document.querySelector("#validateConfirm");
+	validateConfirmButton.disabled  = false;
+	validateConfirmButton.addEventListener("click", clearAll);
 }
 
 //Handle Infos EstimateFile Change
