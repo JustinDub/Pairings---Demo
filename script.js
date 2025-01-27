@@ -222,6 +222,7 @@ function closeClearConfirmModal() {
 	confirmModalWrapper.style.display = "none"
     document.removeEventListener("click", clearAll);
     document.removeEventListener("click", closeClearConfirmModal);
+	document.querySelectorAll("button").forEach(element => element.disabled=false);
 }
 
 function clearAll() {
@@ -244,11 +245,13 @@ function clearAll() {
 }
 	
 function openClearConfirmModal() {
-	//document.queryAll("button").disabled=true
+	document.querySelectorAll("button").forEach(element => element.disabled=true);
 	confirmModalWrapper.style.display = "flex";
 	const cancelConfirmButton = document.querySelector("#cancelConfirm");
+	cancelConfirmButton.disabled = false;
 	cancelConfirmButton.addEventListener("click", closeClearConfirmModal);
 	const validateConfirmButton = document.querySelector("#validateConfirm");
+	validateConfirmButton.disabled  = false;
 	validateConfirmButton.addEventListener("click", clearAll);
 }
 
