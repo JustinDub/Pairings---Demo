@@ -22,6 +22,11 @@ body {
 .list, .paired {
 	height: 15%;
 }
+.list {
+	display: inherit;
+	align-items: center;
+	flex-flow: column;
+}
 
 /*Lists*/
 #rosterA {
@@ -39,7 +44,8 @@ body {
 .list img {
 	margin: 5px;
 	border: 0.5rem outset;
-	height: 80%;
+	height: 10vh;
+  	width: 10vh;
 }
 .list.rosterA img, .pairing .rosterA img {
 	border-color: #aa2222;
@@ -68,7 +74,7 @@ div.second.list.listPaired img {
 	filter: invert(0.6);
 }
 .list p {
-	margin: -0.5em 0em 10em;
+	margin: -5px 0px 10px;
 	text-align: center;
 }
 
@@ -164,7 +170,7 @@ div.second.list.listPaired img {
 }
 #confirmModal p {
     font-size: larger;
-    margin-left: 5px;
+    margin-left: 20px;
 }
 .factionsRoster {
 	display: flex;
