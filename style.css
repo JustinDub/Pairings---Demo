@@ -94,9 +94,10 @@ div.second.list.listPaired img {
 	border: 0.5rem outset;
 	height: 80%;
 	background-position: center;
-    background-repeat:no-repeat;
-    background-size: contain;
-    width: 12vh;
+    	background-repeat:no-repeat;
+    	background-size: contain;
+	background-color: #FFFFFF;
+    	width: 12vh;
 }
 .pairing .attacker {
 	background-image: url("images/assets/attacker.png");
