@@ -6,33 +6,43 @@ let selectedListTitle = "";
 let selectedListSrc = undefined;
 let selectedListRoster = "";
 
-const pairedLists = {
+const pairedList = {
 	"pairedA1" : "",
 	"pairedA2" : "",
 	"pairedA2b" : "",
 	"pairedA3" : "",
+	"pairedA3b" : "",
 	"pairedA4" : "",
-	"pairedA4b" : "",
 	"pairedA5" : "",
 	"pairedA6" : "",
 	"pairedB1" : "",
 	"pairedB1b" : "",
 	"pairedB2" : "",
 	"pairedB3" : "",
-	"pairedB3b" : "",
 	"pairedB4" : "",
+	"pairedB4b" : "",
 	"pairedB5" : "",
 	"pairedB6" : ""
 };
 
 let swapped = false;
-const swapMatrice = [
-	{id: "#listA1", swapId: "#listB1"},
-	{id: "#listA2", swapId: "#listB2"},
-	{id: "#listA3", swapId: "#listB3"},
-	{id: "#listA4", swapId: "#listB4"},
-	{id: "#listA5", swapId: "#listB5"},
-	{id: "#listA6", swapId: "#listB6"}
+const rostersSwapMatrice = [
+	{id: "listA1", swapId: "listB1"},
+	{id: "listA2", swapId: "listB2"},
+	{id: "listA3", swapId: "listB3"},
+	{id: "listA4", swapId: "listB4"},
+	{id: "listA5", swapId: "listB5"},
+	{id: "listA6", swapId: "listB6"}
+];
+const pairingsSwapMatrice = [
+	{id: "pairedA1", swapId: "pairedB2"},
+	{id: "pairedA2", swapId: "pairedB1"},
+	{id: "pairedA2b", swapId: "pairedB1b"},
+	{id: "pairedA3", swapId: "pairedB4"},
+	{id: "pairedA3b", swapId: "pairedB4b"},
+	{id: "pairedA4", swapId: "pairedB3"},
+	{id: "pairedA5", swapId: "pairedB5"},
+	{id: "pairedA6", swapId: "pairedB6"}
 ];
 
 rosterA.addEventListener("click", (e) => selectList(e));
@@ -80,19 +90,19 @@ function attributePairing(element) {
 	if(element.target.tagName=="IMG") {
 		if(
 			element.target.classList.contains("attacker") 
-			&& pairedLists[`${element.target.id}`]
+			&& pairedList[`${element.target.id}`]
 			&& !selectedListId
 			&& !element.target.classList.contains("denied")
 		) {
 			element.target.classList.add("denied")
-			const selectedList = document.querySelector(`#${pairedLists[`${element.target.id}`]}`);
+			const selectedList = document.querySelector(`#${pairedList[`${element.target.id}`]}`);
 			selectedList.classList.remove("listPaired");
 		}
-		else if (selectedListId != pairedLists[`${element.target.id}`]) {
+		else if (selectedListId != pairedList[`${element.target.id}`]) {
 			element.target.classList.remove("denied")
-			if(pairedLists[`${element.target.id}`]){
+			if(pairedList[`${element.target.id}`]){
 			//Remove previous list from pairing
-				const selectedList = document.querySelector(`#${pairedLists[`${element.target.id}`]}`);
+				const selectedList = document.querySelector(`#${pairedList[`${element.target.id}`]}`);
 				selectedList.classList.remove("listPaired");
 			}
 			if (selectedListId) {
@@ -101,7 +111,7 @@ function attributePairing(element) {
 					element.target.style=`background-image: url(${selectedListSrc})`
 					const selectedList = document.querySelector(`#${selectedListId}`);
 					selectedList.classList.add("listPaired");
-					pairedLists[`${element.target.id}`] = selectedListId;
+					pairedList[`${element.target.id}`] = selectedListId;
 					unselectList();
 				}
 			}
@@ -109,7 +119,7 @@ function attributePairing(element) {
 			//Remove list from pairing
 				const className = element.target.className
 				element.target.style=`background-image: url(images/assets/${className}.png)`;
-				pairedLists[`${element.target.id}`] = "";
+				pairedList[`${element.target.id}`] = "";
 			}
 		}
 	}
@@ -174,15 +184,17 @@ const swapButton = document.querySelector("#swap");
 swapButton.addEventListener("click", (e) => swapRosters());
 
 function swapRosters() {
+	//Swap rosters titles
 	const titleA = document.querySelector("#rosterA .title");
 	const titleB = document.querySelector("#rosterB .title");
 	const prevTitleA = titleA.textContent;
 	titleA.textContent = titleB.textContent;
 	titleB.textContent = prevTitleA;
 
-	swapMatrice.forEach((elementA) => {
-		const previousA = document.querySelector(elementA.id)
-		const previousB = document.querySelector(elementA.swapId)
+	//Swap roster lists sides
+	rostersSwapMatrice.forEach((elementA) => {
+		const previousA = document.querySelector(`#${elementA.id}`)
+		const previousB = document.querySelector(`#${elementA.swapId}`)
 		let src, title;
 		if (previousA.firstElementChild != null){
 			src = previousA.firstElementChild.src;
@@ -193,8 +205,52 @@ function swapRosters() {
 			previousB.firstElementChild.src = src;
 			previousB.firstElementChild.title = title;
 			previousB.lastElementChild.textContent = title;
+			//handle paired/not paired
+			if(previousB.classList.contains("listPaired") && !previousA.classList.contains("listPaired")) {
+				previousA.classList.add("listPaired")
+				previousB.classList.remove("listPaired")
+			}
+			else if(previousA.classList.contains("listPaired") && !previousB.classList.contains("listPaired")) {
+				previousB.classList.add("listPaired")
+				previousA.classList.remove("listPaired")
+			}
 		}
 	})
+
+	//Swap paired lists
+	pairingsSwapMatrice.forEach((elementA) => {
+		const previousA = document.querySelector(`#${elementA.id}`)
+		const previousB = document.querySelector(`#${elementA.swapId}`)
+		let src, title;
+		if (previousA != null){
+			src = previousA.style.backgroundImage;
+			// title = previousA.title;
+			previousA.style.backgroundImage = previousB.style.backgroundImage;
+			// previousA.title = previousB.title;
+			previousB.style.backgroundImage = src;
+			// previousB.title = title;
+		// Handle paired/not paired
+			if(previousB.classList.contains("denied") && !previousA.classList.contains("denied")) {
+				previousA.classList.add("denied")
+				previousB.classList.remove("denied")
+			}
+			else if(previousA.classList.contains("denied") && !previousB.classList.contains("denied")) {
+				previousB.classList.add("denied")
+				previousA.classList.remove("denied")
+			}
+		}
+		// Update the pairedList
+		const list = pairedList[elementA.id];
+		if (swapped) {
+			pairedList[elementA.id] = pairedList[elementA.swapId] ? rostersSwapMatrice.find((e) => e.swapId == pairedList[elementA.swapId]).id : "";
+			pairedList[elementA.swapId] = list ? rostersSwapMatrice.find((e) => e.swapId == list).id : "";
+		}
+		else {
+			pairedList[elementA.id] = pairedList[elementA.swapId] ? rostersSwapMatrice.find((e) => e.id == pairedList[elementA.swapId]).swapId : "";
+			pairedList[elementA.swapId] = list ? rostersSwapMatrice.find((e) => e.id == list)?.swapId : "";
+		}
+	})
+	swapped = !swapped
 }
 
 const infosButton = document.querySelector("#infos");
@@ -228,8 +284,7 @@ function closeClearConfirmModal() {
 function clearAll() {
 	closeClearConfirmModal();
 	//Réinitialise la page
-	const pairedList = document.querySelectorAll(".paired img");
-	pairedList.forEach((pairedElement) => {
+	document.querySelectorAll(".paired img").forEach((pairedElement) => {
 		const className = pairedElement.className;
 		pairedElement.style=`background-image: url(images/assets/${className}.png)`;
 	})
@@ -237,8 +292,8 @@ function clearAll() {
 	const lists = document.querySelectorAll(".list");
 	lists.forEach((listElement) => listElement.classList.remove("listPaired"));
 
-	// reset pairedLists
-	Object.keys(pairedLists).forEach((key, index) => pairedLists[key]="");
+	// reset pairedList
+	Object.keys(pairedList).forEach((key, index) => pairedList[key]="");
 
 	const attackers = document.querySelectorAll(".attacker");
 	attackers.forEach((attacker) => attacker.classList.remove("denied"))
