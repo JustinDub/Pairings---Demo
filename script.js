@@ -216,7 +216,6 @@ function swapRosters() {
 			}
 		}
 	})
-
 	//Swap paired lists
 	pairingsSwapMatrice.forEach((elementA) => {
 		const previousA = document.querySelector(`#${elementA.id}`)
@@ -243,10 +242,10 @@ function swapRosters() {
 		const list = pairedList[elementA.id];
 		if (swapped) {
 			pairedList[elementA.id] = pairedList[elementA.swapId] ? rostersSwapMatrice.find((e) => e.swapId == pairedList[elementA.swapId]).id : "";
-			pairedList[elementA.swapId] = list ? rostersSwapMatrice.find((e) => e.swapId == list).id : "";
+			pairedList[elementA.swapId] = list ? rostersSwapMatrice.find((e) => e.id == list).swapId : "";
 		}
 		else {
-			pairedList[elementA.id] = pairedList[elementA.swapId] ? rostersSwapMatrice.find((e) => e.id == pairedList[elementA.swapId]).swapId : "";
+			pairedList[elementA.id] = pairedList[elementA.swapId] ? rostersSwapMatrice.find((e) => e.swapId == pairedList[elementA.swapId]).id : "";
 			pairedList[elementA.swapId] = list ? rostersSwapMatrice.find((e) => e.id == list)?.swapId : "";
 		}
 	})
