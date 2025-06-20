@@ -144,7 +144,7 @@ function displayRosterModal() {
 				prevFaction.parentElement.classList.remove("selected")
 			}
 			factionElement.target.parentElement.classList.add("selected")
-			selectedFaction.name = factionElement.target.title
+			selectedFaction.name = `${factionElement.target.title}`
 			selectedFaction.src = factionElement.target.src
 			const rosterModal = document.querySelector("#rosterModal")
 			rosterModal.addEventListener("click", (rosterElement) => {
