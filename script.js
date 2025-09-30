@@ -123,6 +123,19 @@ function attributePairing(element) {
 			}
 		}
 	}
+	else if(element.target.className=="table") {
+		debugger
+		switch(element.target.textContent) {
+			case "-" :
+				element.target.textContent = 1;
+				break;
+			case "8" :
+				element.target.textContent = "-";
+				break;
+			default:
+				element.target.textContent ++;
+		}
+	}
 }
 
 const rosterModalButton = document.querySelector("#displayRosterModal");
